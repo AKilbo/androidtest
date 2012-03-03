@@ -1,7 +1,13 @@
 package com.manning.unlockingandroid;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+
 import android.app.Activity;
 import android.os.Bundle; 
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.manning.unlockingandroid.R;
@@ -15,5 +21,40 @@ public class Chapter2Activity extends Activity {
         setContentView(R.layout.main);
         	final EditText mealpricefield = (EditText) findViewById (R.id.mealprice); 
         	final TextView answerfield = (TextView) findViewById (R.id.answer);
+        	final Button button = (Button) findViewById(R.id.calculateTip);
+        	button.setOnClickListener(new Button.OnClickListener() {
+        		public void onClick(View v){
+        			try{
+        				Log.i(tag, "onClick invoked.");
+        				//grab meal price from UI
+        				String mealprice = mealpricefield.getText().toString();
+        				Log.i(tag, "mealprice is [" + mealprice + "]");
+        				String answer ="";
+        				//check to see if mealprice includes a "$"
+        				if(mealprice.indexOf("$")==-1){
+        					mealprice = "$" + mealprice;
+        				}
+        				float fmp = 0.0F;
+        				//get currency formatter
+        				NumberFormat nf = java.text.NumberFormat.getCurrencyInstance();
+        				//grab the input meal price
+        				fmp = nf.parse(mealprice).floatValue();
+        				//tipping at %20
+        				fmp *= 1.2;
+        				Log.i(tag,"total mealprice is at " + fmp);
+        				//formatting time
+        				answer = "Full Price with a 20% tip : " + nf.format(fmp);
+        				answerfield.setText(answer);
+        			} catch (ParseException pe) {
+        					Log.i(tag,"paresexception caught");
+        					answerfield.setText("failed to parse amount");        			
+        			}catch (Exception e){
+        				Log.e(tag, "failed to calculate tip:" + e.getMessage());
+        				e.printStackTrace();
+        				answerfield.setText(e.getMessage());
+        			}
+        				
+        		}
+        	});
     }
 }
