@@ -8,7 +8,7 @@
     <TextView
         android:layout_width = "fill_parent"
         android:layout_height = "wrap_content"
-        android:text = "Android Tip Calculator"
+        android:text = "Android Tip Calculator, Enter in price before tax"
         	 />
 	
     <EditText
@@ -23,6 +23,25 @@
         android:layout_height="wrap_content"
         android:text = "Calculate Tip" />
 
+	<TextView
+        android:id= "@+id/beforetip"
+        android:layout_width ="fill_parent"
+        android:layout_height = "wrap_content"
+        android:text = ""
+        />
+    
+    <TextView
+        android:id= "@+id/tax"
+        android:layout_width ="fill_parent"
+        android:layout_height = "wrap_content"
+        android:text = ""
+        />
+    <TextView
+        android:id= "@+id/tip"
+        android:layout_width ="fill_parent"
+        android:layout_height = "wrap_content"
+        android:text = ""
+        />
     <TextView
         android:id= "@+id/answer"
         android:layout_width ="fill_parent"
