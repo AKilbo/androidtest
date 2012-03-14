@@ -52,7 +52,7 @@ public class ReviewCriteria extends Activity {
     	}
     return super.onMenuItemSelected(featureId, item);
     }
-    private void handleGEtReviews(){
+    private void handleGetReviews(){
     	if(!validate()){
     		return;
     	}
